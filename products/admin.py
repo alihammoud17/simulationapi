@@ -5,6 +5,7 @@ from .models import Product, ProductImage, Size, ProductSize
 
 class ImageAdminInline(admin.StackedInline):
     model = ProductImage
+    extra = 1
 
 class ProductSizeInline(admin.TabularInline):
     model = ProductSize
