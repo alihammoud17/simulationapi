@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 def product_image_path(instance, filename):
-    return "product/images/{}/{}".format(instance.title, filename)
+    return "product/images/{}/{}".format(instance.altText, filename)
 
 
 class Category(models.Model):
@@ -13,7 +13,7 @@ class Category(models.Model):
         return self.categoryName
 
 class Size(models.Model):
-    label = models.CharField("Size Label", max_length=1, default="S")
+    label = models.CharField("Size Label", max_length=5, default="S")
     sizeName = models.CharField("Size Title", max_length=100, default="small")
 
     def __str__(self) -> str:
@@ -46,9 +46,13 @@ class ProductImage(models.Model):
     productID = models.ForeignKey(
         Product, 
         on_delete=models.CASCADE,   
+        related_name="images"
     )
     imageURL = models.ImageField("Image File", upload_to=product_image_path, blank=True, null=True)
     altText = models.CharField("Image Name", max_length=200, null=True, default="image alternative")
+
+    def __str__(self) -> str:
+        return f"{self.altText}: {self.imageURL}"
 
 class ProductSize(models.Model):
     product = models.ForeignKey(
@@ -59,4 +63,5 @@ class ProductSize(models.Model):
         Size,
         on_delete=models.CASCADE
     )
-    quantityInStock = models.IntegerField("Quantity", default=1)
+    quantityInStock = models.PositiveBigIntegerField("Quantity", default=1)
+    quantitySold = models.PositiveBigIntegerField("Quantity Sold", default=0)
