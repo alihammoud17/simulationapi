@@ -6,6 +6,11 @@ class ImageSerializer(serializers.ModelSerializer):
         model = ProductImage
         fields = '__all__'
 
+class ProductSizeSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = ProductSize
+            fields = '__all__'
+
 class SizeSerializer(serializers.ModelSerializer):
         class Meta:
             model = Size
@@ -21,7 +26,7 @@ class ProductSerializer(serializers.ModelSerializer):
     # productImages = serializers.StringRelatedField(many=True)
     
     images = ImageSerializer(many=True, read_only=True)
-    productSizes = SizeSerializer(many=True, read_only=True)
+    sizes = ProductSizeSerializer(many=True, read_only=True)
     # productCategory = CategorySerializer(many=False, read_only=True)
 
     class Meta:
@@ -33,7 +38,6 @@ class ProductSerializer(serializers.ModelSerializer):
             'isFeatured',
             'price',
             'images',
-            'productSizes',
-            'productCategory'
+            'sizes'
         ]
 

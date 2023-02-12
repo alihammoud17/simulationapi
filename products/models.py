@@ -36,8 +36,11 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=5, decimal_places=2, default=0.00)
     dateCreated = models.DateTimeField(auto_now_add=True)
     dateModified = models.DateTimeField(auto_now=True)
-    productSizes = models.ManyToManyField(Size, related_name='size', through='ProductSize')
+    # productSizes = models.ManyToManyField(Size, related_name='size', through='ProductSize')
     productCategory = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, verbose_name="Product Category")
+
+    # def get_parents(self):
+    #     return ",".join([str(p) for p in self.productSizes.all()])
 
     def __str__(self) -> str:
         return self.name
@@ -57,7 +60,8 @@ class ProductImage(models.Model):
 class ProductSize(models.Model):
     product = models.ForeignKey(
         Product, 
-        on_delete=models.CASCADE,   
+        on_delete=models.CASCADE,  
+        related_name="productsizes" 
     )
     size = models.ForeignKey(
         Size,

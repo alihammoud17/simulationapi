@@ -10,10 +10,19 @@ class ImageAdminInline(admin.StackedInline):
 class ProductSizeInline(admin.TabularInline):
     model = ProductSize
     extra = 1
-    readonly_fields = ("quantitySold", )
-
 class ProductAdmin(admin.ModelAdmin):
     inlines = (ImageAdminInline, ProductSizeInline)
+
+    # def get_quantityInStock(self, obj):
+    #     print("obj", obj.quantityInStock)
+    #     return obj
+
+    list_display = (
+        'name',
+        'price',
+        'isFeatured',
+    )
+    list_editable = ('isFeatured', 'price')
 
 # class SizeAdmin(admin.ModelAdmin):
 #     inlines = (ProductSizeInline, )

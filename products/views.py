@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
-from .models import Product, Category
-from .serializers import ProductSerializer, CategorySerializer
+from .models import Product, Category, Size
+from .serializers import SizeSerializer, ProductSerializer, CategorySerializer
 from rest_framework.response import Response
 from django.http import Http404
 
@@ -34,4 +34,11 @@ class CategoriesView(APIView):
     def get(self, request):
         categories = Category.objects.all()
         serializer = CategorySerializer(categories, many=True)
+        return Response(serializer.data)
+
+class SizesView(APIView):
+
+    def get(self, request):
+        sizes = Size.objects.all()
+        serializer = SizeSerializer(sizes, many=True)
         return Response(serializer.data)
