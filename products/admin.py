@@ -10,6 +10,8 @@ class ImageAdminInline(admin.StackedInline):
 class ProductSizeInline(admin.TabularInline):
     model = ProductSize
     extra = 1
+    readonly_fields = ('quantitySold', )
+
 class ProductAdmin(admin.ModelAdmin):
     inlines = (ImageAdminInline, ProductSizeInline)
 
