@@ -63,7 +63,7 @@ class ProductSize(models.Model):
     product = models.ForeignKey(
         Product, 
         on_delete=models.CASCADE,  
-        related_name="productsizes" ,
+        related_name="productSizes" ,
         null=True,
         default=0
     )
