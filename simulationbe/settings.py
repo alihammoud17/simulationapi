@@ -43,7 +43,7 @@ INSTALLED_APPS = [
 
     # Simulation Backend Apps
     'products',
-    'order'
+    # 'order'
 ]
 
 MIDDLEWARE = [
@@ -90,18 +90,16 @@ WSGI_APPLICATION = 'simulationbe.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'simulationdb_test',
+        'NAME': 'simulationdb_test2',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '127.0.0.1',
         'PORT': '3306',
-         'OPTIONS': {  
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
-        }  
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        }
     }
 }
-
-
 
 
 # Password validation
