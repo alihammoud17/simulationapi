@@ -40,7 +40,7 @@ INSTALLED_APPS = [
 
     # Used Libraries
     'rest_framework',
-
+    'phonenumber_field',
     # Simulation Backend Apps
     'products',
     # 'order'
