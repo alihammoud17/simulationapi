@@ -52,7 +52,7 @@ class SiteUser(AbstractBaseUser, PermissionsMixin):
     objects = CustomAccountManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['user_name', 'first_name', 'phone_number']
+    REQUIRED_FIELDS = ['user_name', 'first_name']
 
     def __str__(self):
         return self.user_name

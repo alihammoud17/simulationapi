@@ -15,6 +15,7 @@ class UserAdminConfig(UserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'user_name', 'first_name', 'phone_number')}),
         ('Permissions', {'fields': ('is_staff', 'is_active')}),
+        ('Groups', {'fields': ('groups',)}),
         ('Personal', {'fields': ('about',)}),
     )
     formfield_overrides = {
